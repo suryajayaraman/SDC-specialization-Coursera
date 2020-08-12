@@ -1,0 +1,45 @@
+localisation - pos, orientation in world
+
+parameter estimation - constant over time
+
+Least Squares
+
+y = x + v
+
+y = measurements
+v = measurement noise
+x = ground truth value
+
+y1 = x +v1
+y2 = x +v2
+y3 = x +v3
+
+e1^2 = (y1 - x)^2
+
+
+https://phet.colorado.edu/sims/html/least-squares-regression/latest/least-squares-regression_en.html
+
+
+https://textbooks.math.gatech.edu/ila/least-squares.html
+
+e2^2 = (y2 - x)^2 and so on.
+
+Objective of LS is to find x such that it minimises (e1^2 + e2^2 + e3^2)
+
+https://phet.colorado.edu/sims/html/least-squares-regression/latest/least-squares-regression_en.html
+
+
+https://textbooks.math.gatech.edu/ila/least-squares.html
+
+
+https://onlinelibrary.wiley.com/doi/book/10.1002/0470045345
+
+
+http://mfviz.com/central-limit/
+
+https://newonlinecourses.science.psu.edu/stat414/node/191/
+
+https://arxiv.org/pdf/0804.2996.pdf
+
+
+
