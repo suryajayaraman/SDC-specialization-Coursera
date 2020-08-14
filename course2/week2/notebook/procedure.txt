@@ -1,0 +1,41 @@
+v_var = 0.1  # translation velocity variance  
+om_var = 0.1  # rotational velocity variance 
+r_var = 0.1  # range measurements variance
+b_var = 0.1  # bearing measurement variance
+Q_km = np.diag([v_var, om_var]) # input noise covariance 
+cov_y = np.diag([r_var, b_var])  # measurement noise covariance 
+
+for every time step :
+	1. Prediction
+		a.compute delta_t
+		b.using the non-linear equation, update the state x_k
+			theta = wraptopi(theta)
+			x(k)  = function(x(k-1), delta_t, transition_matrix, [v, omega])
+			where  transition_matrix = (3 x 2 matrix) ~ [cos(theta), sin(theta), 1] 
+			
+		c.xk[2] = wraptopi(xk[2])
+		d.compute jacobian of F_k (upper triangular matrix)
+			where F_k[0,2] = -delta_t * sin(theta)*v[k-1]
+				  F_k[1,2] =  delta_t * cos(theta)*v[k-1]
+		e.compute L_k = delta_t * transition_matrix	
+		f.update P_k using the formula in class
+			P_k = function(F_k, P_k, L_k, Q_km)
+
+	for every landmark
+		2. Correction step( l[j], b[i, j], r[i, j], xk, P_k)
+			a. xl, yl from l[j] and x,y,theta from x_k
+			b. compute H_k jacobian ~ (2 x 3) matrix which is comprised of terms like
+				(xl - x - d*cos(theta)), (yl - y - d*sin(theta))
+			c. M_k = identity matrix
+			d. S   = function(Hk, P_k, Mk, cov_y)  
+			e. Kg  = function(P_k, Hk, S) #kalman gain
+			f. compute yk using the non linear measurement model as given:
+			   yk  = function((xl - x - d*cos(theta)), (yl - y - d*sin(theta)))
+			   yk[2] = wraptopi(yk[2])
+			g. ym    =[r[i,j],wraptopi(b[i,j])]
+			h. update x_k using standard formula:
+				x_k = function(x_k, Kg, (ym-yk) )
+			    x_k[2] = wraptopi(xk[2])
+			i. update P_k as:
+				P_k = function( I, Kg, Hk, P_k)
+			
