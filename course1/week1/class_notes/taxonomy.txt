@@ -1,0 +1,66 @@
+driving task
+perception, planning and controls
+
+Operational domain design
+define the conditiotns in which the system can work safely
+
+
+Taxonomy
+----------------------------------------------------------
+
+Lateral and longitudinal control
+OEDR Object and Event detection and repsonse
+
+
+SAE J3016
+L0 No autotmation
+L1 either lateral or long, but not both. eg: ACC, Lane keep assist, Lane Departure warning systems
+
+L2 Both in specific conditions
+
+L3 includes automated OEDR and Long, Lat control, driver neednt be attentive in certain cases as system will altert prior, but event handling is by driver. eg : Audi A8, slow traffic systems
+
+L4 system able to take emergency actions incase driver doesnt intervene
+eg : waymo 
+
+ODD are important when discussion of Levels of a automation
+
+
+----------------------------------------------------------
+
+https://www.sae.org/standards/content/j3016_201806/
+
+----------------------------------------------------------
+
+
+
+Perception
+Ego motion states and also environment
+
+
+Static obejcts :
+classify - on road / off-road
+
+
+Dynamic objects:
+predict tehir states ppl, cars, cycles, bikes all vehilces
+
+
+Challenges:
+sensor uncertainty, training models - need huge data, time-consuming 
+occlusion , lens flare, GPS outages
+
+
+----------------------------------------------------------
+
+http://www.cvlibs.net/datasets/kitti/
+----------------------------------------------------------
+Requirements for Perception
+
+
+
+
+Decision making
+Long term High level planning
+Short term change lanes, when should I take a turn etc
+Immeidate repsone emergency situation
